@@ -1,0 +1,23 @@
+{
+  "name": "portfoliomanager",
+  "version": "1.0.0",
+  "description": "Portfolio Manager",
+  "main": "index.js",
+  "dependencies": {
+    "moment": "^2.18.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mgnath/portfoliomanager.git"
+  },
+  "author": "Gopinath Manchineella",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mgnath/portfoliomanager/issues"
+  },
+  "homepage": "https://github.com/mgnath/portfoliomanager#readme"
+}
