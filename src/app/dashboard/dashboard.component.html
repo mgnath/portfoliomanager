@@ -1,8 +1,7 @@
-<md-list>
-  <h2 md-header>{{title}}</h2>
-  <md-list-item *ngFor="let stock of stocks">
-    <p md-line>
-      <span>{{stock.t}}----{{stock.l}}----{{stock.ltt}}</span>
-    </p>
-  </md-list-item>
-</md-list>
+<md-card>
+  <md-list>
+    <md-list-item *ngFor="let stock of stocks">
+        <span>{{stock.t}}----{{stock.l}}----{{stock.ltt}}</span>
+    </md-list-item>
+  </md-list>
+</md-card>

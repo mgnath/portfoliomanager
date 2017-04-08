@@ -10,11 +10,12 @@ import {StockInfo} from '../core/interfaces/stock-info';
 export class DashboardComponent implements OnInit {
   stocks: StockInfo[];
   sample:string;
-  constructor( private financialService: FinanceService) { }
+  constructor( private financeService: FinanceService) { }
 
   ngOnInit() {
-    this.financialService.getLatestStockPrice(["AAPL","MSFT"])
-      .then(stockInfo => this.stocks = stockInfo);
+    // this.financeService.getLatestStockPrice(["AAPL","MSFT"])
+    //   .then(stockInfo => this.stocks = stockInfo);
+    this.stocks = this.financeService.getLatestStockPriceMoq();
   }
 
 }
