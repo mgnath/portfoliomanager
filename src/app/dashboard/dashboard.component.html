@@ -1,7 +1,20 @@
 <md-card>
+<md-input-container>
+  <input mdInput placeholder="Ticker" [(ngModel)]="newTicker"
+    (keyup.enter)="addTicker()">
+</md-input-container>
+<button  md-button color="primary" (click)="refreshData()" 
+    [disabled]="action != 'Refresh'"><md-icon>refresh</md-icon></button>
+</md-card>
+<br/>
+
+<br/>
+<md-card>
   <md-list>
     <md-list-item *ngFor="let stock of stocks">
-        <span>{{stock.t}}----{{stock.l}}----{{stock.ltt}}</span>
+        <span><h3>{{stock.t}}&nbsp;&nbsp;{{stock.l}}&nbsp;&nbsp;</h3></span>
+        <span [ngClass]="{'red': stock.c_fix < 0, 'green': stock.c_fix > 0}"> {{stock.c_fix}} ({{stock.cp_fix}}%) </span>
+        <span>&nbsp;&nbsp;{{stock.ltt}}</span>
     </md-list-item>
   </md-list>
 </md-card>

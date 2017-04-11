@@ -7,18 +7,9 @@ import {StockInfo} from '../interfaces/stock-info';
 @Injectable()
 export class FinanceService {
   private googleFinUrl = 'http://finance.google.com/finance/info?q=';
-  private resp =  [
-                      {"t" : "AAPL"
-                      ,"e" : "NASDAQ"
-                      ,"l" : 148.34
-                      ,"ltt":"4:00PM EDT"
-                      }
-                      ,{"t" : "MSFT"
-                      ,"e" : "NASDAQ"
-                      ,"l" : 65.68
-                      ,"ltt":"4:00PM EDT"
-                      }
-                    ];
+  private resp =  [{"t" : "AAPL","e" : "NASDAQ","l" : 148.3 ,"ltt":"13:00PM EDT",c_fix:"-0.01",cp_fix:"-0.01" }
+                  ,{"t" : "IBM","e" : "NASDAQ","l" : 176.3 ,"ltt":"13:00PM EDT",c_fix:"-2.45",cp_fix:"-1.87" }
+                   ,{"t" : "MSFT","e" : "NASDAQ","l" : 65.68,"ltt":"13:00PM EDT",c_fix:"0.09",cp_fix:"0.02"}];
 
   constructor(private http:Http) { }
   getLatestStockPrice(Tickers:string[]):Promise<Array<StockInfo>>{

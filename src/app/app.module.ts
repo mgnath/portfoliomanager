@@ -12,7 +12,8 @@ import {
   MdSelectModule,
   MdToolbarModule,
   MdGridListModule,
-  MdCardModule
+  MdCardModule,
+  MdIconModule
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -43,6 +44,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MdToolbarModule,
     MdGridListModule,
     MdListModule,
+    MdIconModule,
     FlexLayoutModule,
     AppRoutingModule
   ],
