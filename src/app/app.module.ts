@@ -15,7 +15,6 @@ import {
   MdCardModule,
   MdIconModule
 } from '@angular/material';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 import 'hammerjs';
 
@@ -45,7 +44,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MdGridListModule,
     MdListModule,
     MdIconModule,
-    FlexLayoutModule,
     AppRoutingModule
   ],
   providers: [FinanceService],
