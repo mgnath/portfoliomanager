@@ -22,8 +22,8 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.refreshData();
-    this.stocks = this.financeService.getLatestStockPriceMoq();
+    this.refreshData();
+    //this.stocks = this.financeService.getLatestStockPriceMoq();
   }
   refreshData(){
     if(this.watchList.length>0){
