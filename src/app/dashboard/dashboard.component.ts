@@ -1,6 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
-
 import {FinanceService} from '../core/services/finance.service';
+import {UtilService} from '../core/services/util.service';
 import {StockInfo} from '../core/interfaces/stock-info';
 
 @Component({
@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
   action:string;
 
 
-  constructor( private financeService: FinanceService) { 
+  constructor( private financeService: FinanceService, private util:UtilService) { 
     this.watchList = ["AAPL","MSFT"];
     this.newTicker ="";
     this.action="Refresh";
@@ -37,7 +37,6 @@ export class DashboardComponent implements OnInit {
     this.action="Refresh";
   }
   addTicker(){
-    console.log(this.newTicker);
     if(this.newTicker.length >0 ){
       this.watchList.push(this.newTicker);
       this.newTicker = "";

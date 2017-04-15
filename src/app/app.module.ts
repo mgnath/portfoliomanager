@@ -22,6 +22,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { FinanceService } from './core/services/finance.service';
+import { UtilService } from './core/services/util.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 @NgModule({
   declarations: [
@@ -46,7 +47,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MdIconModule,
     AppRoutingModule
   ],
-  providers: [FinanceService],
+  providers: [FinanceService,UtilService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

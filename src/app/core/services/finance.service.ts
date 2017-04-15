@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Headers, Http, Response} from '@angular/http';
+import {Headers, Http, Response, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import {StockInfo} from '../interfaces/stock-info';
@@ -12,7 +12,16 @@ export class FinanceService {
                    ,{"t" : "MSFT","e" : "NASDAQ","l" : 65.68,"ltt":"13:00PM EDT",c_fix:"0.09",cp_fix:"0.02"}];
 
   constructor(private http:Http) { }
+
+   
+
   getLatestStockPrice(Tickers:string[]):Promise<Array<StockInfo>>{
+    let headers = new Headers();
+     headers.append("Access-Control-Allow-Origin", "*");
+     headers.append("Access-Control-Allow-Headers","Access-Control-Allow-Headers");
+
+    let options = new RequestOptions({headers: headers});
+
     return this.http
       .get(this.googleFinUrl+Tickers.concat(','))
       .toPromise()
