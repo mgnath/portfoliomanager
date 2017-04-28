@@ -13,7 +13,8 @@ import {
   MdToolbarModule,
   MdGridListModule,
   MdCardModule,
-  MdIconModule
+  MdIconModule,
+  MdAutocompleteModule
 } from '@angular/material';
 
 import 'hammerjs';
@@ -45,6 +46,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MdGridListModule,
     MdListModule,
     MdIconModule,
+    MdAutocompleteModule,
     AppRoutingModule
   ],
   providers: [FinanceService,UtilService],

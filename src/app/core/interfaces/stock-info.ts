@@ -5,4 +5,15 @@ export class StockInfo {
     c_fix:number;
     cp_fix:number;
     ltt:Date;
+    stake:number;
+}
+
+export class WatchList{
+    id:string;
+    name:string;
+    stocklist:Array<StockInfo>;
+}
+
+export interface Map<T> {
+    [K: string]: T;
 }
