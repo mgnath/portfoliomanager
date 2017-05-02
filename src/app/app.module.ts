@@ -25,11 +25,13 @@ import { NavComponent } from './nav/nav.component';
 import { FinanceService } from './core/services/finance.service';
 import { UtilService } from './core/services/util.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { WatchlistComponent } from './watchlist/watchlist.component';
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    NavComponent
+    NavComponent,
+    WatchlistComponent
   ],
   imports: [
     BrowserModule,

@@ -1,35 +1,17 @@
 <md-card>
-  <md-list>
-    <md-list-item *ngFor="let stock of stocks">
-      <span><h3>{{stock.t}}&nbsp;&nbsp;{{stock.l}}&nbsp;&nbsp;</h3></span>
-      <span [ngClass]="{'red': stock.c_fix < 0, 'green': stock.c_fix > 0}"> {{stock.c_fix}} ({{stock.cp_fix}}%) </span>
-      <span>&nbsp;&nbsp;{{stock.ltt}}</span>
-    </md-list-item>
-  </md-list>
-  <md-input-container>
-    <input mdInput placeholder="Ticker" [(ngModel)]="newTicker" (keyup.enter)="addTicker()">
-  </md-input-container>
-  <button md-button color="primary" (click)="refreshData()" [disabled]="action != 'Refresh'"><md-icon>refresh</md-icon></button>
+  <md-card-header>
+    <md-card-title>Sand Box</md-card-title>
+  </md-card-header>
+  <pm-watchlist [watchlist]="this.sandBoxWL"></pm-watchlist>
+  <button md-button color="primary" (click)="toggleSandBox()">Test - {{action}}
+  </button>
 </md-card>
-
-<md-card>
-  <input type="text" placeholder="Create Watchlist" [(ngModel)]="newWL" (keyup.enter)="createWatchlist()" />
-
-  <select [(ngModel)]="selectedWL">
-    <option *ngFor="let w of watchlists" [ngValue]="w">
-      {{w.name}}
-    </option>
-  </select>
-<md-card *ngIf="selectedWL">
-  <md-list>
-    <md-list-item *ngFor="let stock of selectedWL.stocklist">
-      <span><h3>{{stock.t}}&nbsp;&nbsp;{{stock.l}}&nbsp;&nbsp;</h3></span>
-      <span [ngClass]="{'red': stock.c_fix < 0, 'green': stock.c_fix > 0}"> {{stock.c_fix}} ({{stock.cp_fix}}%) </span>
-      <span>&nbsp;&nbsp;{{stock.ltt}}</span>
-    </md-list-item>
-  </md-list>
-  <md-input-container>
-    <input mdInput placeholder="Ticker" [(ngModel)]="newWLTicker" (keyup.enter)="addTickerToWL()">
-  </md-input-container>
-  </md-card>
+<md-input-container>
+  <input mdInput type="text" placeholder="Create Watchlist" [(ngModel)]="newWL" (keyup.enter)="createWatchlist()" />
+</md-input-container>
+<md-card *ngFor="let w of watchlists">
+  <md-card-header>
+    <md-card-title>{{w.name}}</md-card-title>
+  </md-card-header>
+  <pm-watchlist [watchlist]="w"></pm-watchlist>
 </md-card>

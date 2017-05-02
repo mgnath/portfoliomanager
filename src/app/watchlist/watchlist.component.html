@@ -1,0 +1,10 @@
+<md-list>
+  <md-list-item *ngFor="let stock of watchlist.stocklist">
+    <span><h4>{{stock.t}}&nbsp;&nbsp;{{stock.l}}&nbsp;&nbsp;</h4></span>
+    <span [ngClass]="{'red': stock.c_fix < 0, 'green': stock.c_fix > 0}"> {{stock.c_fix}} ({{stock.cp_fix}}%) </span>
+    <span>&nbsp;&nbsp;{{stock.ltt}}</span>
+  </md-list-item>
+</md-list>
+<md-input-container>
+  <input mdInput placeholder="Ticker" [(ngModel)]="newWLTicker" (keyup.enter)="addTickerToWL()">
+</md-input-container>

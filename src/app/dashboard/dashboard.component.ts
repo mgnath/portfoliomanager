@@ -1,8 +1,11 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
-import {FinanceService} from '../core/services/finance.service';
-import {UtilService} from '../core/services/util.service';
+import { FinanceService } from '../core/services/finance.service';
+import { UtilService } from '../core/services/util.service';
 import { StockInfo, WatchList } from '../core/interfaces/stock-info';
+import { MdGridListModule } from '@angular/material';
+import { Observable } from 'rxjs/Rx';
+import { Subscription } from "rxjs/Subscription";
 
 @Component({
   selector: 'pm-dashboard',
@@ -10,68 +13,47 @@ import { StockInfo, WatchList } from '../core/interfaces/stock-info';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  stocks: StockInfo[];
-  @Input() newTicker:string;
-  @Input() newWL:string;
-  watchList:string[];
-  action:string;
+  sandBoxWL: WatchList;
+  @Input() newWL: string;
+  action: string;
   watchlists: WatchList[];
-
-
-  @Input() selectedWL:WatchList;
-  @Input() newWLTicker:string;
-
-
-  constructor( private financeService: FinanceService, private util:UtilService) { 
-    this.watchList = ["AAPL","MSFT"];
-    this.newTicker ="";
-    this.action="Refresh";
-    this.watchlists = financeService.getWatchLists();
+  stream: Observable<number>;
+  toggleMode: boolean;
+  subscription:Subscription;
+  constructor(private financeService: FinanceService, private util: UtilService) {
+    this.sandBoxWL = new WatchList();
+    this.sandBoxWL.stocklist = [];
+    this.action = "Pause Auto";
+    this.toggleMode = true;
+    this.stream = Observable.interval(50000);
   }
 
   ngOnInit() {
-    this.refreshData();
-    //this.stocks = this.financeService.getLatestStockPriceMoq();
+    this.watchlists = this.financeService.getWatchLists();
+    this.toggleSandBox();
   }
 
-  refreshData(){
-    if(this.watchList.length>0){
-      this.action="Loading";
-     this.financeService.getLatestStockPrice(this.watchList)
-      .subscribe(stockInfo => this.updateUI(stockInfo));
+  toggleSandBox() {
+    if (this.toggleMode) {
+       this.action = "Pause Auto";
+      this.subscription = this.stream.subscribe((x) => {
+                            console.log('updating...' + x);
+                          });
     }
-  }
-  refreshWLData(){
-    if(this.selectedWL.stocklist.length>0){
-      this.financeService.getLatestStockPrice(this.selectedWL.stocklist.map(e=>e.t))
-      .subscribe(stockInfo => this.selectedWL.stocklist = stockInfo);
+    else {
+       this.action = "Go Auto";
+       console.log('unsubscribing...');
+      this.subscription.unsubscribe();
     }
+    this.toggleMode = !this.toggleMode;
   }
-  updateUI(stockInfo){
-    this.stocks = stockInfo; 
-    this.action="Refresh";
-  }
-  addTicker(){
-    if(this.newTicker.length >0 ){
-      this.watchList.push(this.newTicker);
-      this.newTicker = "";
-      this.refreshData();
+
+  createWatchlist() {
+    if (!this.financeService.checkIfWatchlistExists(this.newWL)) {
+      this.financeService.addWatchList(this.newWL);
+      this.watchlists = this.financeService.getWatchLists();
+      this.newWL = "";
     }
-  }
-  createWatchlist(){
-    this.financeService.addWatchList(this.newWL);
-    this.watchlists = this.financeService.getWatchLists();
-  }
-  addTickerToWL(){
-    if(this.newWLTicker.length >0 ){
-      console.log(this.selectedWL.name);
-      let newStock = new StockInfo();
-      newStock.t = this.newWLTicker;
-      this.selectedWL.stocklist = this.selectedWL.stocklist || [];
-      this.selectedWL.stocklist.push(newStock);
-      this.financeService.updateWatchList(this.selectedWL);
-      this.newWLTicker = "";
-      this.refreshWLData();
-    }
+    else { alert("Watchlist already exists"); }
   }
 }
