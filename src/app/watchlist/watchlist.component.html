@@ -8,3 +8,4 @@
 <md-input-container>
   <input mdInput placeholder="Ticker" [(ngModel)]="newWLTicker" (keyup.enter)="addTickerToWL()">
 </md-input-container>
+<button  *ngIf="deletable" md-button color="primary" (click)="DeleteWL()">Delete</button>

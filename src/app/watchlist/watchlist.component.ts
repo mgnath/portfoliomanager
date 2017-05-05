@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { WatchList, StockInfo } from "app/core/interfaces/stock-info";
 import { FinanceService } from "app/core/services/finance.service";
 import { Observable, Subscription } from "rxjs/Rx";
+import { ApiService } from "app/core/services/api.service";
 
 @Component({
   selector: 'pm-watchlist',
@@ -11,17 +12,18 @@ import { Observable, Subscription } from "rxjs/Rx";
 export class WatchlistComponent implements OnInit {
   @Input() watchlist: WatchList;
   @Input() auto: boolean;
+  @Input() deletable:boolean;
   stream: Observable<number>;
   subscription:Subscription;
 
   newWLTicker: string;
-  constructor(private financeService: FinanceService) { 
+  constructor(private financeService: FinanceService, private apiService:ApiService) { 
      this.stream = Observable.interval(50000);
   }
 
   ngOnInit() {
     this.refreshWLData();
-    this.toggleAuto(this.auto);
+    //this.toggleAuto(this.auto);
   }
   toggleAuto(enable:Boolean) {
     if (enable) {
@@ -44,9 +46,14 @@ export class WatchlistComponent implements OnInit {
       this.refreshWLData();
     }
   }
+  DeleteWL(){
+    if(this.deletable){
+      this.financeService.deleteWatchList(this.watchlist);
+    }
+  }
   refreshWLData() {
     if (this.watchlist.stocklist && this.watchlist.stocklist.length > 0) {
-      this.financeService.getLatestStockPrice(this.watchlist.stocklist.map(e => e.t))
+      this.apiService.getLatestStockPrice(this.watchlist.stocklist.map(e => e.t))
         .subscribe(stockInfo => this.watchlist.stocklist = stockInfo);
     }
   }

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule,JsonpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
@@ -26,6 +26,7 @@ import { FinanceService } from './core/services/finance.service';
 import { UtilService } from './core/services/util.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { WatchlistComponent } from './watchlist/watchlist.component';
+import { ApiService } from "app/core/services/api.service";
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +39,7 @@ import { WatchlistComponent } from './watchlist/watchlist.component';
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
+    JsonpModule,
     MdButtonModule,
     MdCheckboxModule,
     MdInputModule,
@@ -51,7 +53,7 @@ import { WatchlistComponent } from './watchlist/watchlist.component';
     MdAutocompleteModule,
     AppRoutingModule
   ],
-  providers: [FinanceService,UtilService],
+  providers: [FinanceService,UtilService,ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

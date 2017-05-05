@@ -9,9 +9,11 @@
 <md-input-container>
   <input mdInput type="text" placeholder="Create Watchlist" [(ngModel)]="newWL" (keyup.enter)="createWatchlist()" />
 </md-input-container>
-<md-card *ngFor="let w of watchlists">
+<div flex style="display:block">
+<md-card class="card" *ngFor="let w of watchlists">
   <md-card-header>
     <md-card-title>{{w.name}}</md-card-title>
   </md-card-header>
-  <pm-watchlist [watchlist]="w"></pm-watchlist>
+  <pm-watchlist [watchlist]="w" [deletable]="true"></pm-watchlist>
 </md-card>
+</div>
