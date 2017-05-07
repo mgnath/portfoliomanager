@@ -3,3 +3,12 @@
   height: 100%;
   display: inline-block;  
 }
+
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+}
+
+.flex-item {
+    margin: 10px;
+}

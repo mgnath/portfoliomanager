@@ -11,7 +11,7 @@ export class FinanceService {
   private googleFinUrl = 'http://finance.google.com/finance/info?JSONP_CALLBACK&q=';
   constructor(private jsonp: Jsonp, private util: UtilService) {
   }
-
+ 
   // getLatestStockPrice(Tickers: string[]): Observable<Array<StockInfo>> {
   //     // let headers = new Headers();
   //     // headers.append("Access-Control-Allow-Origin", "http://127.0.0.1:4200");

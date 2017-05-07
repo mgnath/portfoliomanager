@@ -17,37 +17,19 @@ export class DashboardComponent implements OnInit {
   @Input() newWL: string;
   action: string;
   watchlists: WatchList[];
-  stream: Observable<number>;
-  toggleMode: boolean;
-  subscription:Subscription;
   constructor(private financeService: FinanceService, private util: UtilService) {
     this.sandBoxWL = new WatchList();
     this.sandBoxWL.stocklist = [];
-    this.action = "Pause Auto";
-    this.toggleMode = true;
-    this.stream = Observable.interval(50000);
   }
 
   ngOnInit() {
     this.watchlists = this.financeService.getWatchLists();
-    this.toggleSandBox();
   }
 
-  toggleSandBox() {
-    if (this.toggleMode) {
-       this.action = "Pause Auto";
-      this.subscription = this.stream.subscribe((x) => {
-                            console.log('updating...' + x);
-                          });
-    }
-    else {
-       this.action = "Go Auto";
-       console.log('unsubscribing...');
-      this.subscription.unsubscribe();
-    }
-    this.toggleMode = !this.toggleMode;
+  DeleteWL(watchlist:WatchList) {
+    this.financeService.deleteWatchList(watchlist);
+    this.watchlists = this.financeService.getWatchLists();
   }
-
   createWatchlist() {
     if (!this.financeService.checkIfWatchlistExists(this.newWL)) {
       this.financeService.addWatchList(this.newWL);
