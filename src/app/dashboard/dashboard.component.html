@@ -3,17 +3,17 @@
     <md-card-title>Sand Box</md-card-title>
   </md-card-header>
   <pm-watchlist [watchlist]="this.sandBoxWL"></pm-watchlist>
-  <button md-button color="primary" (click)="toggleSandBox()">Test - {{action}}
-  </button>
 </md-card>
-<md-input-container>
-  <input mdInput type="text" placeholder="Create Watchlist" [(ngModel)]="newWL" (keyup.enter)="createWatchlist()" />
+<md-input-container style="margin-left:10px;"> 
+  <input mdInput type="text"  placeholder="Create Watchlist" [(ngModel)]="newWL" (keyup.enter)="createWatchlist()" />
 </md-input-container>
-<div flex style="display:block">
-<md-card class="card" *ngFor="let w of watchlists">
+<div class="flex-container">
+<md-card class="flex-item"  *ngFor="let w of watchlists">
   <md-card-header>
-    <md-card-title>{{w.name}}</md-card-title>
+    <md-card-title>{{w.name}}
+      <button  md-button color="primary" (click)="DeleteWL(w)">Delete</button>
+    </md-card-title>
   </md-card-header>
-  <pm-watchlist [watchlist]="w" [deletable]="true"></pm-watchlist>
+  <pm-watchlist [watchlist]="w" [deletable]="true" [auto]="true"></pm-watchlist>
 </md-card>
 </div>
