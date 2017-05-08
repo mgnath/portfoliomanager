@@ -15,7 +15,7 @@ export class ApiService {
       return this.http.get(ConfigService.FIN_URL + Tickers.concat(',')) //+"&callback="
       .map((response: Response) => JSON.parse(response.text().replace("//", "")));
   }
-   GetJsonPResponse(Tickers: string[]) {    
+   GetJsonPResponse(Tickers: string[], callback) {    
         var apiServicePath =ConfigService.FIN_URL + Tickers.concat(',');    
         $.ajax({    
             crossDomain: true,    
@@ -24,7 +24,7 @@ export class ApiService {
             async: false,    
             context: document.body    
         }).done(function (data) {    
-            console.log(data);    
+            callback(data);    
         });    
     };    
 }
