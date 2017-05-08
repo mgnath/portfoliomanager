@@ -27,6 +27,7 @@ import { UtilService } from './core/services/util.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { WatchlistComponent } from './watchlist/watchlist.component';
 import { ApiService } from "app/core/services/api.service";
+import { ConfigService } from "app/core/services/config.service";
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +54,7 @@ import { ApiService } from "app/core/services/api.service";
     MdAutocompleteModule,
     AppRoutingModule
   ],
-  providers: [FinanceService,UtilService,ApiService],
+  providers: [FinanceService,UtilService,ApiService,ConfigService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

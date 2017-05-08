@@ -47,7 +47,7 @@ export class WatchlistComponent implements OnInit {
     }
   }
   DeleteWL(){
-    if(this.deletable){
+    if (this.deletable){
       this.financeService.deleteWatchList(this.watchlist);
     }
   }

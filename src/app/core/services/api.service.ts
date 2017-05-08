@@ -5,20 +5,18 @@ import * as $ from 'jquery';
 
 import { StockInfo, WatchList } from '../interfaces/stock-info';
 import { Observable } from "rxjs/Observable";
+import { ConfigService } from "app/core/services/config.service";
 @Injectable()
 export class ApiService {
 
-  private googleFinUrl = 'http://finance.google.com/finance/info?q=';
-  constructor(private http: Http) {
+  constructor(private http: Http, private config:ConfigService) {
   }
   getLatestStockPrice(Tickers: string[]): Observable<Array<StockInfo>> {
-    this.GetJsonPResponse(Tickers);
-
-    return this.http.get(this.googleFinUrl + Tickers.concat(',')) //+"&callback="
+      return this.http.get(ConfigService.FIN_URL + Tickers.concat(',')) //+"&callback="
       .map((response: Response) => JSON.parse(response.text().replace("//", "")));
   }
    GetJsonPResponse(Tickers: string[]) {    
-        var apiServicePath = this.googleFinUrl + Tickers.concat(',');    
+        var apiServicePath =ConfigService.FIN_URL + Tickers.concat(',');    
         $.ajax({    
             crossDomain: true,    
             dataType: "jsonp",    
