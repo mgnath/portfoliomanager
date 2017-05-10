@@ -46,11 +46,6 @@ export class WatchlistComponent implements OnInit {
       this.refreshWLData();
     }
   }
-  DeleteWL() {
-    if (this.deletable) {
-      this.financeService.deleteWatchList(this.watchlist);
-    }
-  }
   refreshWLData() {
     if (this.watchlist.stocklist && this.watchlist.stocklist.length > 0) {
       // this.apiService.getLatestStockPrice(this.watchlist.stocklist.map(e => e.t))
