@@ -10,7 +10,7 @@
 <div class="flex-container">
 <md-card class="flex-item"  *ngFor="let w of watchlists">
   <md-card-header>
-    <md-card-title>{{w.name}}<button md-button color="primary" (click)="DeleteWL(w)"><md-icon>close</md-icon></button>
+    <md-card-title>{{w.name}}<button md-button color="primary" (click)="DeleteWL(w)" style="align:right;"><md-icon>close</md-icon></button>
     </md-card-title>
   </md-card-header>
   <pm-watchlist [watchlist]="w" [deletable]="true" [auto]="true"></pm-watchlist>
