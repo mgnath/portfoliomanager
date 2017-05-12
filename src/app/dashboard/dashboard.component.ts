@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FinanceService } from '../core/services/finance.service';
 import { UtilService } from '../core/services/util.service';
 import { StockInfo, WatchList } from '../core/interfaces/stock-info';
-import { MdGridListModule } from '@angular/material';
+import { MdGridListModule, MdButton } from '@angular/material';
 import { Observable } from 'rxjs/Rx';
 import { Subscription } from "rxjs/Subscription";
 
