@@ -40,7 +40,7 @@ export class WatchlistComponent implements OnInit {
     }
   }
   addTickerToWL() {
-    if (this.newWLTicker.length > 0) {
+    if (this.newWLTicker && this.newWLTicker.length > 0) {
       this.financeService.addTickerToWatchList(this.newWLTicker, this.watchlist);
       this.newWLTicker = "";
       this.refreshWLData();
