@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { WatchList, StockInfo } from "app/core/interfaces/stock-info";
 import { FinanceService } from "app/core/services/finance.service";
 import { Observable, Subscription } from "rxjs/Rx";
@@ -13,6 +13,9 @@ export class WatchlistComponent implements OnInit {
   @Input() watchlist: WatchList;
   @Input() auto: boolean;
   @Input() deletable: boolean;
+  @Output('delete')
+  delete: EventEmitter<WatchList> = new EventEmitter<WatchList>();
+
   stream: Observable<number>;
   subscription: Subscription;
 
@@ -24,6 +27,9 @@ export class WatchlistComponent implements OnInit {
   ngOnInit() {
     this.refreshWLData();
     this.toggleAuto(this.auto);
+  }
+  deleteWL(){
+    this.delete.emit(this.watchlist);
   }
   toggleAuto(enable: Boolean) {
     if (enable) {

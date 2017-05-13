@@ -1,28 +1,10 @@
 <md-input-container style="margin-left:10px;">
   <input mdInput type="text" placeholder="Create Watchlist" [(ngModel)]="newWL" (keyup.enter)="createWatchlist()" />
 </md-input-container>
-<button md-button  color="primary" (click)="createWatchlist()">ADD</button>
-<div class="flex-container" >
-  <md-card class="flex-item">
-    <md-card-header>
-      <md-card-title>Sand Box</md-card-title>
-    </md-card-header>
-    <md-card-content>
-      <pm-watchlist [watchlist]="this.sandBoxWL" [auto]="true"></pm-watchlist>
-    </md-card-content>
-    <md-card-actions>
-    </md-card-actions>
-  </md-card>
-  <md-card class="flex-item" *ngFor="let w of watchlists">
-    <md-card-header>
-      <md-card-title>{{w.name}}
-      </md-card-title>
-    </md-card-header>
-    <md-card-content>
-      <pm-watchlist [watchlist]="w" [auto]="true"></pm-watchlist>
-    </md-card-content>
-    <md-card-actions>
-      <button md-button color="warn" (click)="DeleteWL(w)">DELETE</button>
-    </md-card-actions>
-  </md-card>
+<button md-button color="primary" (click)="createWatchlist()">ADD</button>
+<div class="flex-container">
+  <pm-watchlist [watchlist]="sandBoxWL" [auto]="true" [deletable]="false"></pm-watchlist>
+
+  <pm-watchlist *ngFor="let w of watchlists" [watchlist]="w" [auto]="true" [deletable]="true" (delete)="DeleteWL($event)"></pm-watchlist>
+
 </div>

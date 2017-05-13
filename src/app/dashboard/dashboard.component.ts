@@ -6,7 +6,6 @@ import { StockInfo, WatchList } from '../core/interfaces/stock-info';
 import { MdGridListModule, MdButton } from '@angular/material';
 import { Observable } from 'rxjs/Rx';
 import { Subscription } from "rxjs/Subscription";
-
 @Component({
   selector: 'pm-dashboard',
   templateUrl: './dashboard.component.html',
