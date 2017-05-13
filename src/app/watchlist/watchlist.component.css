@@ -1,2 +1,7 @@
 .red{ color:red;}
 .green{color:green;}
+.flex-item {
+    margin: 10px;
+    display: inline-block;  
+    min-width: 100px;
+}
