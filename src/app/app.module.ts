@@ -28,12 +28,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { WatchlistComponent } from './watchlist/watchlist.component';
 import { ApiService } from "app/core/services/api.service";
 import { ConfigService } from "app/core/services/config.service";
+import { TickerpriceComponent } from './templates/tickerprice.component';
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     NavComponent,
-    WatchlistComponent
+    WatchlistComponent,
+    TickerpriceComponent
   ],
   imports: [
     BrowserModule,
