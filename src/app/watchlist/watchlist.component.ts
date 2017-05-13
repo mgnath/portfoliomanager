@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { WatchList, StockInfo } from "app/core/interfaces/stock-info";
 import { FinanceService } from "app/core/services/finance.service";
 import { Observable, Subscription } from "rxjs/Rx";
