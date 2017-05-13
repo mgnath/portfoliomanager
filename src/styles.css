@@ -13,7 +13,6 @@ html,body{
     display: flex;
     flex-direction: column;
     font-family: Roboto,Arial, Helvetica, sans-serif;
-    font-size:x-small;
     margin:0;
     height: 100%;
 }
