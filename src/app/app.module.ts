@@ -29,13 +29,16 @@ import { WatchlistComponent } from './watchlist/watchlist.component';
 import { ApiService } from "app/core/services/api.service";
 import { ConfigService } from "app/core/services/config.service";
 import { TickerpriceComponent } from './templates/tickerprice.component';
+import { AuthService } from "app/core/services/auth.service";
+import { UserCardComponent } from "app/templates/usercard.component";
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     NavComponent,
     WatchlistComponent,
-    TickerpriceComponent
+    TickerpriceComponent,
+    UserCardComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,7 @@ import { TickerpriceComponent } from './templates/tickerprice.component';
     MdAutocompleteModule,
     AppRoutingModule
   ],
-  providers: [FinanceService,UtilService,ApiService,ConfigService],
+  providers: [FinanceService,UtilService,ApiService,ConfigService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -20,5 +20,8 @@ html,body{
     flex-wrap:wrap;
     width:100%;
 }
+.fill-space {
+  flex: 1 1 auto;
+}
 .red{ color:red;}
 .green{color:green;}
