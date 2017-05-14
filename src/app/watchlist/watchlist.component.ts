@@ -34,12 +34,12 @@ export class WatchlistComponent implements OnInit {
   toggleAuto(enable: Boolean) {
     if (enable) {
       this.subscription = this.stream.subscribe((x) => {
-        console.log('refreshing..' + this.watchlist.name + '...' + x);
+        //console.log('refreshing..' + this.watchlist.name + '...' + x);
         this.refreshWLData();
       });
     }
     else {
-      console.log('unsubscribing..' + this.watchlist.name);
+      //console.log('unsubscribing..' + this.watchlist.name);
       if (this.subscription) {
         this.subscription.unsubscribe();
       }

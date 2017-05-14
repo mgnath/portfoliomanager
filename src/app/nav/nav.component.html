@@ -1,12 +1,11 @@
 <md-toolbar color="primary" class="dark">
   <div class="md-toolbar-tools" fxLayout="row nowrap" fxFlex fxLayoutAlign="end center">
-    <a class="ng-title-icon" href="http://angular.io" target="_blank"><i></i></a>
     <span fxFlex class="title">PM</span>
+    <!--<img class="logo" src="favicon.ico">-->
     <span fxFlex="grow"></span>
     <a fxFlex md-button [routerLink]="['/dash']" routerLinkActive="router-link-active"><span>Dashboard</span></a>
 </div>
   <span class="fill-space"></span>
-  <span fxFlex class="subtitle">{{auth.getUserName().name}} </span>
   <pm-usercard [user]="auth.getUserName()"></pm-usercard>
   <button md-button  (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</button>
   <button md-button  (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>
