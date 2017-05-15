@@ -2,25 +2,23 @@
 
 import { Injectable }      from '@angular/core';
 import { tokenNotExpired } from 'angular2-jwt';
-
+import { ConfigService } from "app/core/services/config.service";
+//import {Auth0Lock} from "auth0-lock";
 // Avoid name not found warnings
 declare var Auth0Lock: any;
 
 @Injectable()
 export class AuthService {
-  // Configure Auth0
-  lock = new Auth0Lock('RHu18RAQxkq1aGldT7Yb0i08ufuOBjBS', 'neosecu.auth0.com', {});
+  lock = new Auth0Lock( ConfigService.AUTH0_KEY, ConfigService.AUTH0_URL, {});
   static loadingInfo:boolean = false;
   constructor() {
    this.lock.on("authenticated", function(authResult) {
-      console.log("authenticated");
         localStorage.setItem("id_token", authResult.idToken);
         localStorage.setItem("accessToken", authResult.accessToken);
       });
   }
 
   public login() {
-    // Call the show method to display the widget.
     this.lock.show();
   }
   public getUserName(){
@@ -48,17 +46,13 @@ export class AuthService {
     }
   }
   public authenticated() {
-    // Check if there's an unexpired JWT
-    // This searches for an item in localStorage with key == 'id_token'
-    //console.log(tokenNotExpired('id_token'));
-    
     return tokenNotExpired('id_token');
   }
 
   public logout() {
-    // Remove token from localStorage
     localStorage.removeItem('id_token');
     localStorage.removeItem('profile');
+    window.location.reload();
   }
 }
 

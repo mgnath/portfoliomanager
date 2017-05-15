@@ -31,6 +31,8 @@ import { ConfigService } from "app/core/services/config.service";
 import { TickerpriceComponent } from './templates/tickerprice.component';
 import { AuthService } from "app/core/services/auth.service";
 import { UserCardComponent } from "app/templates/usercard.component";
+import { AuthGuard } from "app/core/security/auth.guard";
+import { LoginComponent } from './login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +40,8 @@ import { UserCardComponent } from "app/templates/usercard.component";
     NavComponent,
     WatchlistComponent,
     TickerpriceComponent,
-    UserCardComponent
+    UserCardComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +62,7 @@ import { UserCardComponent } from "app/templates/usercard.component";
     MdAutocompleteModule,
     AppRoutingModule
   ],
-  providers: [FinanceService,UtilService,ApiService,ConfigService, AuthService],
+  providers: [FinanceService, UtilService, ApiService, ConfigService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
