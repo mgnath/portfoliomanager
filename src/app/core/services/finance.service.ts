@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Headers, Http, Response, RequestOptions, Jsonp} from '@angular/http';
 import 'rxjs/add/operator/map';
 
-import { StockInfo, WatchList } from '../interfaces/stock-info';
+import { Quote, WatchList, StockInfo } from '../interfaces/stock-info';
 import { Observable } from "rxjs/Observable";
 import { UtilService } from "app/core/services/util.service";
 
@@ -12,16 +12,6 @@ export class FinanceService {
   constructor(private jsonp: Jsonp, private util: UtilService) {
   }
  
-  // getLatestStockPrice(Tickers: string[]): Observable<Array<StockInfo>> {
-  //     // let headers = new Headers();
-  //     // headers.append("Access-Control-Allow-Origin", "http://127.0.0.1:4200");
-  //     // //headers.append("Access-Control-Allow-Headers", "Access-Control-Allow-Headers");
-
-  //     // let options = new RequestOptions({ headers: headers });
-
-  //   return this.jsonp.get(this.googleFinUrl + Tickers.concat(','))
-  //   .map((response: Response) => JSON.parse(response.text().replace("//", "")));
-  // }
   getWatchLists(): Array<WatchList> {
     return this.getFromLocalStorage("WatchLists");
   }
@@ -41,6 +31,7 @@ export class FinanceService {
     if (ticker.length > 0) {
       let newStock = new StockInfo();
       newStock.t = ticker; 
+      newStock.stake = 9;
       watchlist.stocklist = watchlist.stocklist || [];
       watchlist.stocklist.push(newStock);
       this.updateWatchList(watchlist);
@@ -63,3 +54,16 @@ export class FinanceService {
     return JSON.parse(localStorage.getItem(collectionKey)) || new Array<WatchList>();
   }
 }
+
+
+
+  // getLatestStockPrice(Tickers: string[]): Observable<Array<StockInfo>> {
+  //     // let headers = new Headers();
+  //     // headers.append("Access-Control-Allow-Origin", "http://127.0.0.1:4200");
+  //     // //headers.append("Access-Control-Allow-Headers", "Access-Control-Allow-Headers");
+
+  //     // let options = new RequestOptions({ headers: headers });
+
+  //   return this.jsonp.get(this.googleFinUrl + Tickers.concat(','))
+  //   .map((response: Response) => JSON.parse(response.text().replace("//", "")));
+  // }

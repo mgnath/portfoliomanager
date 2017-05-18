@@ -3,7 +3,7 @@ import { Headers, Http, Response, RequestOptions, Jsonp } from '@angular/http';
 import 'rxjs/add/operator/map';
 import * as $ from 'jquery';
 
-import { StockInfo, WatchList } from '../interfaces/stock-info';
+import { Quote, WatchList } from '../interfaces/stock-info';
 import { Observable } from "rxjs/Observable";
 import { ConfigService } from "app/core/services/config.service";
 @Injectable()
@@ -11,7 +11,7 @@ export class ApiService {
 
     constructor(private http: Http, private config: ConfigService) {
     }
-    getLatestStockPrice(Tickers: string[]): Observable<Array<StockInfo>> {
+    getLatestStockPrice(Tickers: string[]): Observable<Array<Quote>> {
         return this.http.get(ConfigService.FIN_URL + Tickers.concat(',')) //+"&callback="
             .map((response: Response) => JSON.parse(response.text().replace("//", "")));
     }
@@ -23,7 +23,7 @@ export class ApiService {
             url: apiServicePath,
             async: false,
             context: document.body
-        }).done(function (data) {
+        }).done(function (data:Quote) {
             callback(data);
         });
     };

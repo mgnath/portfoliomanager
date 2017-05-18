@@ -1,2 +1,4 @@
   <span *ngIf="!auth.authenticated()">Log In</span>
-  <span *ngIf="auth.authenticated()">Logged In</span>
+  <span *ngIf="auth.authenticated()">
+    Go to <a fxFlex md-button [routerLink]="['/dash']" routerLinkActive="router-link-active"><span>Dashboard</span></a>
+  </span>

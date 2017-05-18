@@ -6,8 +6,11 @@
   <md-card-content>
     <md-list dense>
       <md-list-item *ngFor="let stock of watchlist.stocklist">
-        <pm-tickerprice [stock]="stock"></pm-tickerprice>
+          <pm-tickerprice [stock]="stock" style="width:100%"></pm-tickerprice>
       </md-list-item>
+       <md-list-item style="float:right;">
+         <span >Total : {{getTotal()}}</span>
+       </md-list-item>
     </md-list>
     <md-input-container>
       <input mdInput placeholder="Ticker" [(ngModel)]="newWLTicker" (keyup.enter)="addTickerToWL()">
