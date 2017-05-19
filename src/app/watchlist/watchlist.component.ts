@@ -20,6 +20,8 @@ export class WatchlistComponent implements OnInit {
   subscription: Subscription;
 
   newWLTicker: string;
+  initialStake:number;
+
   constructor(private financeService: FinanceService, private apiService: ApiService) {
     this.stream = Observable.interval(30000);
   }
@@ -45,8 +47,9 @@ export class WatchlistComponent implements OnInit {
   }
   addTickerToWL() {
     if (this.newWLTicker && this.newWLTicker.length > 0) {
-      this.financeService.addTickerToWatchList(this.newWLTicker, this.watchlist);
+      this.financeService.addTickerToWatchList(this.newWLTicker,this.initialStake, this.watchlist);
       this.newWLTicker = "";
+      this.initialStake = 0;
       this.refreshWLData();
     }
   }

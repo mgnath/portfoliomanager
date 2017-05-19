@@ -27,11 +27,11 @@ export class FinanceService {
     col.push(wl);
     this.saveInLocalStorage("WatchLists", col);
   }
-  addTickerToWatchList(ticker:string, watchlist:WatchList ):void{
+  addTickerToWatchList(ticker:string,initialStake:number, watchlist:WatchList ):void{
     if (ticker.length > 0) {
       let newStock = new StockInfo();
       newStock.t = ticker; 
-      newStock.stake = 9;
+      newStock.stake = initialStake;
       watchlist.stocklist = watchlist.stocklist || [];
       watchlist.stocklist.push(newStock);
       this.updateWatchList(watchlist);

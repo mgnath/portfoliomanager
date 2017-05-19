@@ -4,8 +4,8 @@
     </md-card-title>
   </md-card-header>
   <md-card-content>
-    <md-list dense>
-      <md-list-item *ngFor="let stock of watchlist.stocklist">
+    <md-list dense class="div-table" >
+      <md-list-item class="div-table-row" *ngFor="let stock of watchlist.stocklist">
           <pm-tickerprice [stock]="stock" style="width:100%"></pm-tickerprice>
       </md-list-item>
        <md-list-item style="float:right;">
@@ -14,6 +14,9 @@
     </md-list>
     <md-input-container>
       <input mdInput placeholder="Ticker" [(ngModel)]="newWLTicker" (keyup.enter)="addTickerToWL()">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput type="number" placeholder="Stake" style="width:40px;" [(ngModel)]="initialStake">
     </md-input-container>
     <button md-button color="primary" (click)="addTickerToWL()">ADD</button>
   </md-card-content>
