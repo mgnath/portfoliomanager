@@ -1,12 +1,30 @@
 <md-toolbar color="primary" class="dark">
   <div class="md-toolbar-tools" fxLayout="row nowrap" fxFlex fxLayoutAlign="end center">
-    <!--<span fxFlex class="title">PM</span>-->
     <a><img class="logo" src="favicon.ico"></a>
-   
     <a fxFlex md-button [routerLink]="['dash']" routerLinkActive="router-link-active"><span>Dashboard</span></a>
-</div>
-  <span class="fill-space"></span>
+  </div>
+  <span flex></span>
   <pm-usercard [user]="auth.getUserName()"></pm-usercard>
-  <button md-button  (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</button>
-  <button md-button  (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>
+  <button md-button (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</button>
+  <button md-button (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>
 </md-toolbar>
+<md-content>
+        <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+            <md-nav-item>
+               IC
+            </md-nav-item>
+            <span flex></span>
+            <md-menu md-offset="0 -7" layout-align="end center">
+                <md-button aria-label="Open menu" class="md-button" ng-click="$mdMenu.open($event)">
+                    Welcome! fff
+                    <!--<md-icon md-menu-origin md-svg-icon="call:phone"></md-icon>-->
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                </md-button>
+                <md-menu-content width="3">
+                    <md-menu-item>
+                        <md-button ng-click=""> <span md-menu-align-target>Logout</span></md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </md-nav-bar>
+    </md-content>
