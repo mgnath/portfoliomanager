@@ -1,16 +1,16 @@
-<div class="div-table-col" style="font-size:small;">
+<div class="div-table-col">
   <b>{{stock.t}}</b>
 </div>
-<div class="div-table-col"style="font-size:small;">
+<div class="div-table-col">
   <b>{{stock.l}}</b>
 </div>
-<div class="div-table-col-long" [ngClass]="{'red': stock.c_fix < 0, 'green': stock.c_fix > 0}" style="font-size:small;"> 
-    {{stock.c_fix}} ({{stock.cp_fix}}%) 
+<div class="div-table-col-long" [ngClass]="{'red': stock.c_fix < 0, 'green': stock.c_fix > 0}">
+  {{stock.c_fix}} ({{stock.cp_fix}}%)
 </div>
 
-<div class="div-table-col" style="font-size:small;text-align:right;margin-right:10px;"> 
-    {{stock.stake}}
+<div class="div-table-col" style="text-align:right;margin-right:10px;">
+  {{stock.stake}}
 </div>
-<div class="div-table-col" style="font-size:small;">
+<div class="div-table-col">
   &nbsp;&nbsp;{{ (stock.l * stock.stake).toFixed(2) }}
 </div>

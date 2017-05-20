@@ -40,10 +40,11 @@ html,body{
 .div-table-col {
   float: left; /* fix for  buggy browsers */
   display: table-column;         
-  width: 70px;         
+  width: auto;         
 }
 .div-table-col-long {
   float: left; /* fix for  buggy browsers */
   display: table-column;         
-  width: 100px;         
+  width: auto;
+  margin:5px;         
 }

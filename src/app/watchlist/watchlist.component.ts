@@ -54,18 +54,19 @@ export class WatchlistComponent implements OnInit {
     }
   }
   getTotal(){
-    let indTotals = this.watchlist.stocklist.map(x=> x.l*x.stake );
-    let total = 0;
-    indTotals.forEach(
-      e => total += e
-    );
-    return total;
+    if( this.watchlist.stocklist)
+    {
+      let indTotals = this.watchlist.stocklist.map(x=> x.l*x.stake );
+      let total = 0;
+      indTotals.forEach(
+        e => total += e
+      );
+      return total.toFixed(2);
+    }
+    else{return 0;}
   }
   refreshWLData() {
-    //console.log(this.watchlist.stocklist[0].stake);
     if (this.watchlist.stocklist && this.watchlist.stocklist.length > 0) {
-      // this.apiService.getLatestStockPrice(this.watchlist.stocklist.map(e => e.t))
-      //   .subscribe(stockInfo => this.watchlist.stocklist = stockInfo);
       this.apiService.GetJsonPResponse(this.watchlist.stocklist.map(e => e.t),
         (quote: Array<Quote>) => {
           this.watchlist.stocklist.forEach(element => {
