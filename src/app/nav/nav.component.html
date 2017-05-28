@@ -3,7 +3,7 @@
     <a><img class="logo" src="favicon.ico"></a>
     <a fxFlex md-button [routerLink]="['dash']" routerLinkActive="router-link-active"><span>Dashboard</span></a>
   </div>
-   <span class="fill-space"></span>
+  <span class="fill-space"></span>
   <pm-usercard [user]="auth.getUserName()"></pm-usercard>
   <button md-button (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</button>
   <button md-button (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>

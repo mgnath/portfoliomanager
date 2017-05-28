@@ -16,7 +16,10 @@ import {
   MdIconModule,
   MdAutocompleteModule
 } from '@angular/material';
+import { AngularFireModule } from 'angularfire2';
 
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import 'hammerjs';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
@@ -33,6 +36,16 @@ import { AuthService } from "app/core/services/auth.service";
 import { UserCardComponent } from "app/templates/usercard.component";
 import { AuthGuard } from "app/core/security/auth.guard";
 import { LoginComponent } from './login/login.component';
+
+export const firebaseConfig = {
+    apiKey: "AIzaSyDsTymfb1C7ap2OrSciTv7aooLNgZU1j9U",
+    authDomain: "portfoliomanager-9d2c9.firebaseapp.com",
+    databaseURL: "https://portfoliomanager-9d2c9.firebaseio.com",
+    projectId: "portfoliomanager-9d2c9",
+    storageBucket: "portfoliomanager-9d2c9.appspot.com",
+    messagingSenderId: "419411609008"
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +73,10 @@ import { LoginComponent } from './login/login.component';
     MdListModule,
     MdIconModule,
     MdAutocompleteModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   providers: [FinanceService, UtilService, ApiService, ConfigService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
