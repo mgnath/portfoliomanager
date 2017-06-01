@@ -10,11 +10,12 @@ import { ApiService } from "app/core/services/api.service";
   styleUrls: ['./watchlist.component.css']
 })
 export class WatchlistComponent implements OnInit {
+  @Input() key: string;
   @Input() watchlist: WatchList;
   @Input() auto: boolean;
   @Input() deletable: boolean;
   @Output()
-  delete: EventEmitter<WatchList> = new EventEmitter<WatchList>();
+  delete: EventEmitter<string> = new EventEmitter<string>();
 
   stream: Observable<number>;
   subscription: Subscription;
@@ -31,7 +32,7 @@ export class WatchlistComponent implements OnInit {
     this.toggleAuto(this.auto);
   }
   deleteWL() {
-    this.delete.emit(this.watchlist);
+    this.delete.emit(this.key);
   }
   toggleAuto(enable: Boolean) {
     if (enable) {
@@ -47,7 +48,7 @@ export class WatchlistComponent implements OnInit {
   }
   addTickerToWL() {
     if (this.newWLTicker && this.newWLTicker.length > 0) {
-      this.financeService.addTickerToWatchList(this.newWLTicker,this.initialStake, this.watchlist);
+      this.financeService.addTickerToWatchList(this.key,this.newWLTicker,this.initialStake, this.watchlist);
       this.newWLTicker = "";
       this.initialStake = 0;
       this.refreshWLData();

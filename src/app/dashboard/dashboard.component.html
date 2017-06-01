@@ -1,13 +1,3 @@
-<div class="row columns">
-  <button (click)="login()" *ngIf="!(user | async)?.uid">Anonymous Login</button>
-  <button (click)="logout()" *ngIf="(user | async)?.uid">Logout</button>
-
-  <input type="text" id="message" *ngIf="(user | async)?.uid" placeholder="What is it that you do?" (keyup.enter)="Send($event.target.value)" [(ngModel)]="msgVal" />
-  <div id="details-container">
-      <p *ngFor="let item of items | async">{{item.message}}</p>
-  </div>
-</div>
-
 <md-input-container style="margin-left:10px;">
   <input mdInput type="text" placeholder="Create Watchlist" [(ngModel)]="newWL" (keyup.enter)="createWatchlist()" />
 </md-input-container>
@@ -15,4 +5,8 @@
 <div class="flex-container">
   <pm-watchlist *ngFor="let w of watchlists" [watchlist]="w" [auto]="true" [deletable]="true" 
       (delete)="DeleteWL($event)"></pm-watchlist>
+</div>
+<div class="flex-container">
+  <pm-watchlist *ngFor="let w1 of firewatchlists | async" [key]="w1.$key" [watchlist]="w1" [auto]="true" 
+  [deletable]="true"  (delete)="DeleteWL($event)"></pm-watchlist>
 </div>

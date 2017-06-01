@@ -21,7 +21,8 @@ export class AuthService {
   public login() {
     this.lock.show();
   }
-  public getUserName(){
+  public getUserProfile(){
+    
     if(tokenNotExpired('id_token'))
     {
       if(localStorage.getItem("profile")){

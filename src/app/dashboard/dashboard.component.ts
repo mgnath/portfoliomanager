@@ -20,31 +20,25 @@ export class DashboardComponent implements OnInit {
   @Input() newWL: string;
   action: string;
   watchlists: WatchList[];
-
+  firewatchlists: FirebaseListObservable<any[]>;
   user: Observable<firebase.User>;
-  items: FirebaseListObservable<any[]>;
   msgVal: string = '';
 
-  constructor(private financeService: FinanceService, private util: UtilService,
-    public afAuth: AngularFireAuth, public af: AngularFireDatabase) {
-    this.items = af.list('/messages', {
-      query: {
-        limitToLast: 50
-      }
-    });
-    this.user = this.afAuth.authState;
-
+  constructor(private financeService: FinanceService, private util: UtilService) {
     this.sandBoxWL = new WatchList();
     this.sandBoxWL.stocklist = [];
+    this.user = this.financeService.user;
   }
 
   ngOnInit() {
+    
     this.watchlists = this.financeService.getWatchLists();
+    this.firewatchlists = this.financeService.watchLists;
   }
 
-  DeleteWL(watchlist: WatchList) {
-    this.financeService.deleteWatchList(watchlist);
-    this.watchlists = this.financeService.getWatchLists();
+  DeleteWL(key: string) {
+    this.financeService.deleteWatchList(key);
+    //this.watchlists = this.financeService.getWatchLists();
   }
   createWatchlist() {
     if (!this.financeService.checkIfWatchlistExists(this.newWL)) {
@@ -54,17 +48,10 @@ export class DashboardComponent implements OnInit {
     }
     else { alert("Watchlist already exists"); }
   }
-
   login() {
-    this.afAuth.auth.signInAnonymously();
+    this.financeService.afAuth.auth.signInAnonymously();
   }
-
   logout() {
-    this.afAuth.auth.signOut();
-  }
-
-  Send(desc: string) {
-    this.items.push({ message: desc });
-    this.msgVal = '';
+    this.financeService.afAuth.auth.signOut();
   }
 }

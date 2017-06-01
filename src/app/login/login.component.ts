@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { AuthService } from "app/core/services/auth.service";
 
 @Component({
@@ -7,10 +7,8 @@ import { AuthService } from "app/core/services/auth.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  constructor(public auth: AuthService) { }
-
+  constructor(public auth: AuthService) {
+  }
   ngOnInit() {
   }
-
 }
