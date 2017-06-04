@@ -4,13 +4,11 @@
     </md-card-title>
   </md-card-header>
   <md-card-content>
-    <md-list dense class="div-table" *ngIf="watchlist.stocklist && watchlist.stocklist.length > 0">
-      <md-list-item class="div-table-row" *ngFor="let stock of watchlist.stocklist">
-          <pm-tickerprice [stock]="stock" style="width:100%"></pm-tickerprice>
+    <md-list dense *ngIf="watchlist.stocklist && watchlist.stocklist.length > 0">
+      <pm-tickerprice [stocks]="watchlist.stocklist" style="width:100%"></pm-tickerprice>
+      <md-list-item style="float:right;">
+        <span>Total : {{getTotal()}}</span>
       </md-list-item>
-       <md-list-item style="float:right;">
-         <span >Total : {{getTotal()}}</span>
-       </md-list-item>
     </md-list>
     <md-input-container>
       <input mdInput placeholder="Ticker" [(ngModel)]="newWLTicker" (keyup.enter)="addTickerToWL()">

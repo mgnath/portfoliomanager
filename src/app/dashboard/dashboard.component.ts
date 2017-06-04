@@ -16,23 +16,18 @@ import * as firebase from 'firebase/app';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  sandBoxWL: WatchList;
+  
   @Input() newWL: string;
   action: string;
-  watchlists: WatchList[];
   firewatchlists: FirebaseListObservable<any[]>;
   user: Observable<firebase.User>;
   msgVal: string = '';
 
   constructor(private financeService: FinanceService, private util: UtilService) {
-    this.sandBoxWL = new WatchList();
-    this.sandBoxWL.stocklist = [];
     this.user = this.financeService.user;
   }
 
   ngOnInit() {
-    
-    this.watchlists = this.financeService.getWatchLists();
     this.firewatchlists = this.financeService.watchLists;
   }
 
@@ -43,15 +38,8 @@ export class DashboardComponent implements OnInit {
   createWatchlist() {
     if (!this.financeService.checkIfWatchlistExists(this.newWL)) {
       this.financeService.addWatchList(this.newWL);
-      this.watchlists = this.financeService.getWatchLists();
       this.newWL = "";
     }
     else { alert("Watchlist already exists"); }
-  }
-  login() {
-    this.financeService.afAuth.auth.signInAnonymously();
-  }
-  logout() {
-    this.financeService.afAuth.auth.signOut();
   }
 }

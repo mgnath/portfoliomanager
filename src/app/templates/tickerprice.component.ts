@@ -6,7 +6,7 @@ import { Quote, StockInfo } from "app/core/interfaces/stock-info";
   templateUrl: './tickerprice.component.html',
 })
 export class TickerpriceComponent implements OnInit {
-   @Input() stock: StockInfo;
+   @Input() stocks: StockInfo[];
   constructor() { }
 
   ngOnInit() {

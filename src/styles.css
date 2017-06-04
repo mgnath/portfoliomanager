@@ -25,26 +25,19 @@ html,body{
 }
 .red{ color:red;}
 .green{color:green;}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
 
-.div-table {
-  display: table;         
-  width: auto;                
-  border: 0px solid #666666;         
-  border-spacing: 5px; /* cellspacing:poor IE support for  this */
+th, td {
+    text-align: left;
+    padding: 8px;
 }
-.div-table-row {
-  display: table-row;
-  width: auto;
-  clear: both;
-}
-.div-table-col {
-  float: left; /* fix for  buggy browsers */
-  display: table-column;         
-  width: auto;         
-}
-.div-table-col-long {
-  float: left; /* fix for  buggy browsers */
-  display: table-column;         
-  width: auto;
-  margin:5px;         
+
+tr:nth-child(odd){background-color: #efebf7}
+
+th {
+    background-color: #4CAF50;
+    color: white;
 }
