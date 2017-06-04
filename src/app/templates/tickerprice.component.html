@@ -4,6 +4,6 @@
     <td><b>{{stock.l}}</b></td>
     <td [ngClass]="{'red': stock.c_fix < 0, 'green': stock.c_fix > 0}"> {{stock.c_fix}} ({{stock.cp_fix}}%)</td>
     <td>{{stock.stake}}</td>
-    <td>{{ (stock.l * stock.stake).toFixed(2) }}</td>
+    <td style="float:right;">{{ (stock.l * stock.stake).toFixed(2) }}</td>
   </tr>
 </table>

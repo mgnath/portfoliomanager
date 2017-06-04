@@ -35,7 +35,7 @@ th, td {
     padding: 8px;
 }
 
-tr:nth-child(odd){background-color: #efebf7}
+tr:nth-child(odd){background-color: #efebff}
 
 th {
     background-color: #4CAF50;

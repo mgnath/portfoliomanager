@@ -6,7 +6,7 @@
   <md-card-content>
     <md-list dense *ngIf="watchlist.stocklist && watchlist.stocklist.length > 0">
       <pm-tickerprice [stocks]="watchlist.stocklist" style="width:100%"></pm-tickerprice>
-      <md-list-item style="float:right;">
+      <md-list-item style="float:right; font:bolder;">
         <span>Total : {{getTotal()}}</span>
       </md-list-item>
     </md-list>
